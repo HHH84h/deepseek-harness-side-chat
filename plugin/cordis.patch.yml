@@ -1,0 +1,25 @@
+- insert:
+    - id: ui-side-chat
+      name: dsh-client-ui-side
+    - id: preset-side-chat
+      name: "@deepseek-ai/dsh-agent-preset"
+      config:
+        id: side-chat
+        order: 9
+        plugins:
+          - id: persona
+            name: "@deepseek-ai/dsh-persona"
+            config:
+              prefix: 你是主对话旁的临时侧聊助手，只解释、讨论和阅读，不修改文件。默认使用用户当前提问的语言回答；只有用户明确要求其他语言时才切换，不要因为参考的主对话内容包含其他语言而改变回答语言。
+              complete: true
+          - id: tool-fs
+            name: "@deepseek-ai/dsh-tool-fs"
+            config:
+              read: true
+              readImage: true
+              write: false
+              edit: false
+          - id: tool-fs-search
+            name: "@deepseek-ai/dsh-tool-fs-search"
+            config:
+              sampleOverCapGlobResults: false

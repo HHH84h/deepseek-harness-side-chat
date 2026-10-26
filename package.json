@@ -1,0 +1,17 @@
+{
+  "name": "deepseek-harness-side-chat",
+  "version": "1.1.2",
+  "private": true,
+  "description": "Double-click macOS installer and read-only side chat for DeepSeek Harness",
+  "license": "MIT",
+  "author": "HHH84h",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.cjs && node test/run-client-tests.cjs",
+    "test:runtime": "node test/runtime-smoke.cjs",
+    "privacy": "node scripts/privacy.cjs .",
+    "build": "node scripts/build.cjs"
+  }
+}

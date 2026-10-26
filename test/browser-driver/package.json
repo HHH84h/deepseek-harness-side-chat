@@ -1,0 +1,9 @@
+{
+  "name": "side-chat-browser-driver",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "exports": { ".": "./index.js", "./client": "./client.js" },
+  "dsh": { "client": { "platform": "web", "inject": ["@deepseek-ai/dsh-api-session-controller", "@deepseek-ai/dsh-api-workspace-controller", "@deepseek-ai/dsh-client-ui-workspace", "@deepseek-ai/dsh-client-ui-commands", "@deepseek-ai/dsh-client-ui-sidebar-right"] } }
+}

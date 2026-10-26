@@ -1,0 +1,16 @@
+{
+  "version": "1.1.2",
+  "supportedHarness": "0.2.1-rc.3",
+  "files": {
+    "plugin/package.json": "c44ecf289d8f5351b049b59e21b48222259e8c9cdda1139770177398257c24b1",
+    "plugin/lib/index.js": "4ebc7a37ef77b464e9e932716e6efd2b78432f81cfa675be45c09b8e724ad15a",
+    "plugin/lib/host.js": "2ca26a1d43582c574b4274bbb8b230b25312af55f2f92d6b6faa5fb39a8d153d",
+    "plugin/lib/client.js": "11bf26d937be04224f51daf99a97c64e351e95ed475b4050d2f44c7e7d757646",
+    "plugin/lib/metadata.js": "8b89d676c13773e9595c5abcc9f23c0db35b65e0aac0ec3a9456bffc18c24607",
+    "plugin/lib/update.js": "1be0a7e9ba78d91f898fc6a0e1e486d86ba67b903f5162522e18138c0788ae5f",
+    "plugin/cordis.patch.yml": "bc7b426ab09e847588f174ffac9d8368f3fc5179a6f66a39a3379dc9c4ac9e3b",
+    "plugin/update-source.json": "999ad1f15afc15fe569b6a74c08060d0f98632b03330676b3bba92a88450cfb7",
+    "plugin/README.md": "460f3c0b62425f6eb3e6d7ada6233c2ab788cc77745039c3fddc1554412f6a4a",
+    "plugin/LICENSE": "677820e85bb9cd6790b458e63e66e5b4bb922fc8ce7078015e3e422ebe2d0c3f"
+  }
+}

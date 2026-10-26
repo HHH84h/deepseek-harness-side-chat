@@ -1,0 +1,6 @@
+{
+  "name": "fake-side-llm",
+  "private": true,
+  "type": "module",
+  "main": "lib/index.js"
+}

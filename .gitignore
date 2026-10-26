@@ -1,0 +1,14 @@
+node_modules/
+/dist/
+.DS_Store
+.env
+.env.*
+*.log
+*.jsonl
+*.bak-*
+.side-*/
+.dsh/
+sessions/
+storages/
+reports/
+coverage/

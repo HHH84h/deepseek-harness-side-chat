@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "enabled": false,
+  "repository": null,
+  "channel": "stable",
+  "autoCheck": false
+}
