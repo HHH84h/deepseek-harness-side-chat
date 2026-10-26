@@ -25,6 +25,9 @@ function scan(root, options = {}) {
   const privateName = user && !['root', 'runner', 'test', 'user'].includes(user) ? new RegExp(`\\b${user.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i') : null;
   function walk(dir, rel = '') {
     for (const name of fs.readdirSync(dir).sort()) {
+      // Developer checkouts contain Git metadata. Archives remain strict unless
+      // this option is explicitly requested for the source working directory.
+      if (!rel && name === '.git' && options.sourceCheckout === true) continue;
       const next = path.posix.join(rel, name), file = path.join(dir, name), st = fs.lstatSync(file);
       if (!rel && !(options.native ? new Set(['package.json','lib','cordis.patch.yml','update-source.json','README.md','LICENSE']).has(name) : ROOT_FILES.has(name) || ROOT_DIRS.has(name))) findings.push({ file: next, category: 'not-in-allowlist' });
       if (FORBIDDEN.test(next)) findings.push({ file: next, category: 'excluded-path' });
@@ -46,7 +49,7 @@ function scan(root, options = {}) {
 }
 module.exports = { scan };
 if (require.main === module) {
-  const result = scan(process.argv[2] ?? '.');
+  const result = scan(process.argv[2] ?? '.', { sourceCheckout: process.argv.includes('--source-checkout') });
   console.log(JSON.stringify({ passed: result.passed, fileCount: result.fileCount, findings: result.findings }, null, 2));
   if (!result.passed) process.exitCode = 1;
 }

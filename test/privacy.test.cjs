@@ -4,7 +4,20 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const { scan } = require('../scripts/privacy.cjs');
-test('clean project has no privacy findings', () => { const r = scan(path.resolve(__dirname, '..')); assert.equal(r.passed, true, JSON.stringify(r.findings)); });
+test('clean project has no privacy findings', () => { const r = scan(path.resolve(__dirname, '..'), { sourceCheckout: true }); assert.equal(r.passed, true, JSON.stringify(r.findings)); });
+test('Git metadata is only skipped for explicit source checkout scans, never archive scans', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'side-git-scan-'));
+  try {
+    fs.writeFileSync(path.join(root, 'README.md'), 'Synthetic source');
+    fs.mkdirSync(path.join(root, '.git'));
+    fs.writeFileSync(path.join(root, '.git', 'config'), 'Synthetic Git metadata');
+    assert.equal(scan(root).passed, false);
+    assert.equal(scan(root, { sourceCheckout: true }).passed, true);
+    fs.mkdirSync(path.join(root, 'sessions'));
+    fs.writeFileSync(path.join(root, 'sessions', 'fixture'), 'Synthetic session');
+    assert.equal(scan(root, { sourceCheckout: true }).passed, false);
+  } finally { fs.rmSync(root, { recursive: true, force: true }); }
+});
 test('scanner rejects excluded files, user paths and key-like values without echoing matches', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'side-privacy-'));
   try {

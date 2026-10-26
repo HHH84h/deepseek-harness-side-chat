@@ -83,7 +83,7 @@ Failed deletions can be retried through the pending-cleanup action. Side Chat us
 
 This release targets **macOS / Harness 0.2.1-rc.3** only. Other Harness versions, Windows, and Linux are unvalidated. A Harness update may require a new compatible release.
 
-Validation includes **110 unit tests, 17 client tests, and 102 host regression checks**, plus installation, upgrades, failure recovery, rollback, and removal using the extracted ZIP. Real-browser checks cover input, snapshot refresh, statistics, closing, and restart recovery.
+Validation includes **111 unit tests, 17 client tests, and 102 host regression checks**, plus installation, upgrades, failure recovery, rollback, and removal using the extracted ZIP. Real-browser checks cover input, snapshot refresh, statistics, closing, and restart recovery.
 
 Tests use isolated environments and a recording test model. They do not establish real-model behavior or end-to-end validation in the user's Electron desktop application. Long-term resource growth and occasional top-edge window-dragging failures remain incompletely attributed. Statistics depend on the model adapter's available data.
 

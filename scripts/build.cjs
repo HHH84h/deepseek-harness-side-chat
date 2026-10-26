@@ -21,7 +21,7 @@ function build(out) {
   out = path.resolve(out);
   if (out === ROOT || out.startsWith(ROOT + path.sep)) throw new Error('请把构建输出放到源码目录之外，例如 ../dist；避免把生成物混入待发布源码。');
   manifest();
-  const result = scan(ROOT);
+  const result = scan(ROOT, { sourceCheckout: true });
   if (!result.passed) throw new Error(`隐私扫描失败：${JSON.stringify(result.findings)}`);
   fs.mkdirSync(out, { recursive: true });
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'side-chat-release-'));

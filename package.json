@@ -11,7 +11,7 @@
   "scripts": {
     "test": "node --test test/*.test.cjs && node test/run-client-tests.cjs",
     "test:runtime": "node test/runtime-smoke.cjs",
-    "privacy": "node scripts/privacy.cjs .",
+    "privacy": "node scripts/privacy.cjs . --source-checkout",
     "build": "node scripts/build.cjs"
   }
 }
