@@ -8,8 +8,8 @@ const cp = require('node:child_process');
 const YAML = require('../vendor/yaml');
 
 const ID = 'dsh-client-ui-side';
-const VERSION = '1.1.2';
-const SUPPORTED = '0.2.1-rc.3';
+const VERSION = '1.1.3';
+const SUPPORTED = '0.2.1-rc.5';
 const ROOT = path.resolve(__dirname, '..');
 const FILES = ['package.json', 'lib/index.js', 'lib/host.js', 'lib/client.js', 'lib/metadata.js', 'lib/update.js', 'cordis.patch.yml', 'update-source.json', 'README.md', 'LICENSE'];
 const ENTRIES = [

@@ -1,6 +1,6 @@
 {
   "name": "dsh-client-ui-side",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "private": true,
   "description": "Temporary read-only side chat in the right sidebar, seeded with an explicit snapshot of the current conversation",
   "type": "module",
@@ -42,23 +42,23 @@
   "license": "MIT",
   "author": "HHH84h",
   "engines": {
-    "dsh": "0.2.1-rc.3"
+    "dsh": "0.2.1-rc.5"
   },
   "peerDependencies": {
-    "@deepseek-ai/dsh-agent-preset": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-api-session-controller": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-app-boot": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-client-resources": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-client-ui-chat": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-client-ui-commands": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-client-ui-conversation": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-client-ui-sidebar-right": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-client-ui-workspace": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-persona": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-session": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-session-reference": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-tool-fs": "0.2.1-rc.3",
-    "@deepseek-ai/dsh-tool-fs-search": "0.2.1-rc.3"
+    "@deepseek-ai/dsh-agent-preset": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-api-session-controller": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-app-boot": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-client-resources": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-client-ui-chat": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-client-ui-commands": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-client-ui-conversation": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-client-ui-sidebar-right": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-client-ui-workspace": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-persona": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-session": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-session-reference": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-tool-fs": "0.2.1-rc.5",
+    "@deepseek-ai/dsh-tool-fs-search": "0.2.1-rc.5"
   },
   "peerDependenciesMeta": {
     "@deepseek-ai/dsh-agent-preset": {

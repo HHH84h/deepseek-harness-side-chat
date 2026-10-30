@@ -3,8 +3,8 @@ const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const load = () => import('../plugin/lib/update.js');
 const source = { schema: 1, enabled: true, repository: 'example/side-chat-demo' };
-const runtime = async () => '0.2.1-rc.3';
-function fixture({ next = '1.2.0', supported = ['0.2.1-rc.3'], mutate } = {}) {
+const runtime = async () => '0.2.1-rc.5';
+function fixture({ next = '1.2.0', supported = ['0.2.1-rc.5'], mutate } = {}) {
   const base = `https://github.com/${source.repository}/releases/download/v${next}/`;
   const artifact = `dsh-client-ui-side-${next}.tgz`;
   const release = { tag_name: `v${next}`, draft: false, prerelease: false, assets: ['side-chat-plugin-update.json', artifact].map(name => ({ name, browser_download_url: base + name })) };
@@ -17,7 +17,7 @@ function fixture({ next = '1.2.0', supported = ['0.2.1-rc.3'], mutate } = {}) {
 test('native update disabled performs zero network requests', async () => {
   const { createUpdateChecker } = await load(); let calls = 0;
   const c = createUpdateChecker({ source: { schema: 1, enabled: false, repository: null }, fetchImpl: () => { calls++; throw Error(); } });
-  assert.deepEqual(await c.check(), { status: 'disabled', version: '1.1.2' }); assert.equal(calls, 0); await c.dispose();
+  assert.deepEqual(await c.check(), { status: 'disabled', version: '1.1.3' }); assert.equal(calls, 0); await c.dispose();
 });
 test('native compatible update returns only public package metadata', async () => {
   const { createUpdateChecker } = await load(), f = fixture(); const c = createUpdateChecker({ source, runtime, ...f });
@@ -25,7 +25,7 @@ test('native compatible update returns only public package metadata', async () =
   assert.deepEqual(Object.keys(r).sort(), ['status','version','harness','latest','downloadUrl','sha256','bytes'].sort());
   assert.equal(f.requests.length, 2); for (const { options } of f.requests) { assert.equal(options.credentials, 'omit'); assert.equal(options.method, 'GET'); assert.equal(options.headers.Authorization, undefined); assert.equal(options.body, undefined); } await c.dispose();
 });
-for (const [name, config, status] of [['latest', { next: '1.1.2' }, 'up-to-date'], ['unsupported', { supported: ['9.0.0'] }, 'no-compatible']]) test(`native update ${name}`, async () => {
+for (const [name, config, status] of [['latest', { next: '1.1.3' }, 'up-to-date'], ['unsupported', { supported: ['9.0.0'] }, 'no-compatible']]) test(`native update ${name}`, async () => {
   const { createUpdateChecker } = await load(); const c = createUpdateChecker({ source, runtime, ...fixture(config) }); assert.equal((await c.check()).status, status); await c.dispose();
 });
 for (const [name, mutate] of [

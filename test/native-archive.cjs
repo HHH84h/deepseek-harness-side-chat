@@ -14,7 +14,7 @@ function main() {
     engine.install({profile,root:path.resolve(__dirname,'..')});
     const app = path.join(tmp,'测试 应用.app'); fs.mkdirSync(path.join(app,'Contents/MacOS'),{recursive:true});
     const plist = v => `<?xml version="1.0"?><plist version="1.0"><dict><key>CFBundleIdentifier</key><string>com.deepseek.dsh</string><key>CFBundleExecutable</key><string>TestRuntime</string><key>CFBundleShortVersionString</key><string>${v}</string></dict></plist>`;
-    fs.writeFileSync(path.join(app,'Contents/Info.plist'),plist('0.2.1-rc.3'));
+    fs.writeFileSync(path.join(app,'Contents/Info.plist'),plist('0.2.1-rc.5'));
     const stub = path.join(tmp,'runtime.cjs');
     fs.writeFileSync(stub,"const cp=require('node:child_process'),original=cp.spawnSync;cp.spawnSync=function(cmd,...args){if(cmd==='/usr/bin/osascript')return {status:0,stdout:(process.env.SIDE_FIXTURE_RUNNING==='1'?'true':'false')+'\\n'};return original.call(this,cmd,...args)};\n");
     fs.writeFileSync(path.join(app,'Contents/MacOS/TestRuntime'),`#!/bin/bash\nexec ${quote(process.execPath)} --require ${quote(stub)} "$@"\n`,{mode:0o755});
@@ -24,7 +24,7 @@ function main() {
     check('archive-repeat-migration',()=>{const before=fs.readFileSync(engine.locations(profile).history,'utf8');assert.equal(call('迁移旧版.command').status,0);assert.equal(fs.readFileSync(engine.locations(profile).history,'utf8'),before);});
     check('archive-restore-retains-sibling',()=>{const r=call('恢复旧版.command');assert.equal(r.status,0,r.stderr);assert.ok(fs.existsSync(engine.locations(profile).plugin));assert.match(fs.readFileSync(engine.locations(profile).patch,'utf8'),/keep-other/);});
     check('archive-running-app-refuses-no-write',()=>{const before=engine.stateOf(engine.locations(profile));const r=call('迁移旧版.command',[],{SIDE_FIXTURE_RUNNING:'1'});assert.equal(r.status,1);assert.match(r.stderr,/退出/);assert.deepEqual(engine.stateOf(engine.locations(profile)),before);});
-    check('archive-unsupported-version-refuses',()=>{fs.writeFileSync(path.join(app,'Contents/Info.plist'),plist('9.9.9'));assert.equal(call('迁移旧版.command').status,1);fs.writeFileSync(path.join(app,'Contents/Info.plist'),plist('0.2.1-rc.3'));});
+    check('archive-unsupported-version-refuses',()=>{fs.writeFileSync(path.join(app,'Contents/Info.plist'),plist('9.9.9'));assert.equal(call('迁移旧版.command').status,1);fs.writeFileSync(path.join(app,'Contents/Info.plist'),plist('0.2.1-rc.5'));});
     check('archive-missing-app-refuses',()=>{assert.equal(call('迁移旧版.command',[],{DSH_SIDE_APP:path.join(tmp,'Absent.app')}).status,1);});
     check('archive-missing-runtime-refuses-simulated',()=>{const env=path.join(tmp,'no-runtime.sh');fs.writeFileSync(env,'function [() { if builtin [ "$1" = "-x" ]; then return 1; fi; builtin [ "$@"; }\nfunction command() { if builtin [ "$1" = "-v" ] && builtin [ "$2" = "node" ]; then return 1; fi; builtin command "$@"; }\n');const before=engine.stateOf(engine.locations(profile));const r=call('迁移旧版.command',[],{BASH_ENV:env});assert.equal(r.status,1);assert.match(r.stdout,/运行环境不可用/);assert.deepEqual(engine.stateOf(engine.locations(profile)),before);});
     check('archive-success-tty-autoexits',()=>{

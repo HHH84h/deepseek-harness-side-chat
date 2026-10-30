@@ -11,7 +11,7 @@ const u = require('../tools/updater.cjs');
 const engine = require('../tools/installer.cjs');
 const ROOT = path.resolve(__dirname, '..');
 const REPOSITORY = 'example-owner/side-chat';
-const HARNESS = '0.2.1-rc.3';
+const HARNESS = '0.2.1-rc.5';
 const sha = b => crypto.createHash('sha256').update(b).digest('hex');
 let fixtureHome, future, otherHarness;
 function source(root, enabled = true) {
@@ -53,7 +53,7 @@ function futureZip(parent, harness) {
   const stage = path.join(parent, `${u.PRODUCT}-macos-v1.2.0`); fs.mkdirSync(stage, { recursive: true });
   for (const name of require('../scripts/build.cjs').RELEASE) fs.cpSync(path.join(ROOT, name), path.join(stage, name), { recursive: true });
   const pkgFile = path.join(stage, 'plugin/package.json'), pkg = JSON.parse(fs.readFileSync(pkgFile)); pkg.version = '1.2.0'; fs.writeFileSync(pkgFile, JSON.stringify(pkg));
-  const toolFile = path.join(stage, 'tools/installer.cjs'); fs.writeFileSync(toolFile, fs.readFileSync(toolFile, 'utf8').replace("const VERSION = '1.1.2'", "const VERSION = '1.2.0'").replace(`const SUPPORTED = '${HARNESS}'`, `const SUPPORTED = '${harness}'`));
+  const toolFile = path.join(stage, 'tools/installer.cjs'); fs.writeFileSync(toolFile, fs.readFileSync(toolFile, 'utf8').replace("const VERSION = '1.1.3'", "const VERSION = '1.2.0'").replace(`const SUPPORTED = '${HARNESS}'`, `const SUPPORTED = '${harness}'`));
   fs.writeFileSync(path.join(stage, 'release-manifest.json'), JSON.stringify({ version: '1.2.0', supportedHarness: harness, files: Object.fromEntries(engine.FILES.map(f => [`plugin/${f}`, sha(fs.readFileSync(path.join(stage, 'plugin', f)))])) }));
   const zip = path.join(parent, 'fixture.zip');
   assert.equal(cp.spawnSync('/usr/bin/ditto', ['-c', '-k', '--norsrc', '--keepParent', stage, zip]).status, 0);

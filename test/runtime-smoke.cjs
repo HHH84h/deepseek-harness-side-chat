@@ -20,7 +20,7 @@ function findCli() {
 }
 function prepare(root = process.env.SIDE_COMMAND_ROOT || ROOT) {
   const runtime = findCli();
-  if (JSON.parse(fs.readFileSync(path.join(runtime.dir, 'package.json'))).version !== '0.2.1-rc.3') throw new Error('测试要求 dsh 0.2.1-rc.3。');
+  if (JSON.parse(fs.readFileSync(path.join(runtime.dir, 'package.json'))).version !== '0.2.1-rc.5') throw new Error('测试要求 dsh 0.2.1-rc.5。');
   const home = fs.mkdtempSync(path.join(os.tmpdir(), 'side-chat-runtime-'));
   const cwd = path.join(home, 'Side Chat Demo'); fs.mkdirSync(cwd);
   const profile = path.join(home, 'profiles/web'); fs.mkdirSync(profile, { recursive: true });

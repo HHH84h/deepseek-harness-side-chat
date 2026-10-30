@@ -2,7 +2,7 @@
 
 **简体中文** · [English](README.en.md)
 
-[下载 macOS 安装包](https://github.com/HHH84h/deepseek-harness-side-chat/releases/download/v1.1.2/deepseek-harness-side-chat-macos-v1.1.2.zip) · [Releases](https://github.com/HHH84h/deepseek-harness-side-chat/releases)
+[下载 macOS 安装包](https://github.com/HHH84h/deepseek-harness-side-chat/releases/download/v1.1.3/deepseek-harness-side-chat-macos-v1.1.3.zip) · [Releases](https://github.com/HHH84h/deepseek-harness-side-chat/releases)
 **主任务继续，在旁边把问题问明白。**
 
 通过 `/side` 在 DeepSeek Harness 右侧打开独立的只读对话。解释报错、讨论方案、阅读代码，不打断主任务，也不把侧聊问题写入主对话的模型上下文。
@@ -26,9 +26,9 @@ HHH84h 开发的社区插件，非 DeepSeek 官方产品。采用 MIT 许可。
 
 ## 安装
 
-**当前版本：1.1.2 · macOS · DeepSeek Harness 0.2.1-rc.3**
+**当前版本：1.1.3 · macOS · DeepSeek Harness 0.2.1-rc.5**
 
-1. 从本项目 [Releases](https://github.com/HHH84h/deepseek-harness-side-chat/releases) 下载 `deepseek-harness-side-chat-macos-v1.1.2.zip`。
+1. 从本项目 [Releases](https://github.com/HHH84h/deepseek-harness-side-chat/releases) 下载 `deepseek-harness-side-chat-macos-v1.1.3.zip`。
 2. **解压整个文件夹**，保存工作并完全退出 Harness（`⌘Q`）。
 3. 双击 **「安装或更新.command」**，等待提示成功。
 4. 重新打开 Harness，在主对话输入 `/side`。
@@ -81,7 +81,14 @@ HHH84h 开发的社区插件，非 DeepSeek 官方产品。采用 MIT 许可。
 
 ## 兼容与验证
 
-本版仅适配 **macOS / Harness 0.2.1-rc.3**。其他 Harness 版本、Windows 和 Linux 未验证；客户端更新后可能需要新的适配包。
+本版仅适配 **macOS / Harness 0.2.1-rc.5**。其他 Harness 版本、Windows 和 Linux 未验证；客户端更新后可能需要新的适配包。
+
+| Harness 版本 | 使用版本 |
+| --- | --- |
+| 0.2.1-rc.5 | [1.1.3 双击安装包](https://github.com/HHH84h/deepseek-harness-side-chat/releases/tag/v1.1.3) |
+| 0.2.1-rc.3 | 保留使用 [1.1.2](https://github.com/HHH84h/deepseek-harness-side-chat/releases/tag/v1.1.2) |
+| rc.4、0.2.2 alpha 或其他版本 | 本次未验证，不应绕过版本检查 |
+
 
 已通过 **111 项单元测试、17 项客户端测试、102 项宿主回归**，并验证实际解压包的安装、升级、失败恢复、回退、卸载，以及真实浏览器中的输入、快照刷新、统计、关闭与重启恢复。
 

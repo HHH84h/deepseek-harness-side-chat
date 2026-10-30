@@ -25,7 +25,7 @@ function main() {
     const app = path.join(tmp, '测试 应用.app');
     fs.mkdirSync(path.join(app, 'Contents/MacOS'), { recursive: true });
     const plist = version => `<?xml version="1.0"?><plist version="1.0"><dict><key>CFBundleIdentifier</key><string>com.deepseek.dsh</string><key>CFBundleExecutable</key><string>TestRuntime</string><key>CFBundleShortVersionString</key><string>${version}</string></dict></plist>`;
-    fs.writeFileSync(path.join(app, 'Contents/Info.plist'), plist('0.2.1-rc.3'));
+    fs.writeFileSync(path.join(app, 'Contents/Info.plist'), plist('0.2.1-rc.5'));
     const stub = path.join(tmp, 'fixture-runtime.cjs');
     fs.writeFileSync(stub, "const fs=require('node:fs'),cp=require('node:child_process'),original=cp.spawnSync,rename=fs.renameSync;let failed=false;cp.spawnSync=function(command,...args){if(command==='/usr/bin/osascript')return {status:0,stdout:(process.env.SIDE_FIXTURE_RUNNING==='1'?'true':'false')+'\\n'};return original.call(this,command,...args)};fs.renameSync=function(from,to){if(process.env.SIDE_FIXTURE_FAIL_AT_PATCH==='1'&&!failed&&String(to).endsWith('/cordis.patch.yml')){failed=true;const e=new Error('injected');e.code='EIO';throw e;}return rename.call(this,from,to)};\n");
     fs.writeFileSync(path.join(app, 'Contents/MacOS/TestRuntime'), `#!/bin/bash\nexec ${quote(process.execPath)} --require ${quote(stub)} "$@"\n`, { mode: 0o755 });
@@ -80,7 +80,7 @@ sys.exit(child.wait())
       assert.equal(fs.readFileSync(p.history, 'utf8'), history);
       assert.equal(fs.existsSync(p.lock), false); fs.unlinkSync(marker);
     });
-    check('unsupported-version-no-write', () => { const before = engine.stateOf(engine.locations(profile)); fs.writeFileSync(path.join(app, 'Contents/Info.plist'), plist('9.9.9')); const r = call('安装或更新.command'); assert.equal(r.status, 1); assert.match(r.stderr, /仅支持/); assert.deepEqual(engine.stateOf(engine.locations(profile)), before); fs.writeFileSync(path.join(app, 'Contents/Info.plist'), plist('0.2.1-rc.3')); });
+    check('unsupported-version-no-write', () => { const before = engine.stateOf(engine.locations(profile)); fs.writeFileSync(path.join(app, 'Contents/Info.plist'), plist('9.9.9')); const r = call('安装或更新.command'); assert.equal(r.status, 1); assert.match(r.stderr, /仅支持/); assert.deepEqual(engine.stateOf(engine.locations(profile)), before); fs.writeFileSync(path.join(app, 'Contents/Info.plist'), plist('0.2.1-rc.5')); });
     check('missing-profile-no-write', () => { const r = call('安装或更新.command', ['--profile', 'missing']); assert.equal(r.status, 1); assert.equal(fs.existsSync(path.join(home, 'profiles/missing')), false); });
     check('missing-app-no-write', () => { const before = engine.stateOf(engine.locations(profile)); assert.equal(call('安装或更新.command', [], { DSH_SIDE_APP: path.join(tmp, 'Absent.app') }).status, 1); assert.deepEqual(engine.stateOf(engine.locations(profile)), before); });
     check('missing-runtime-message-no-write-simulated', () => {

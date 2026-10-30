@@ -121,7 +121,7 @@ function cliWith(stubs, options) {
   const code = fs.readFileSync(path.join(ROOT, 'tools/installer.cjs'), 'utf8');
   const fakeProcess = { ...process, platform: stubs.platform ?? 'darwin', env: stubs.env ?? {}, argv: [], exitCode: 0 };
   const spawnSync = (command, args) => {
-    if (command.endsWith('PlistBuddy')) return { status: 0, stdout: args[1].includes('CFBundleIdentifier') ? 'com.deepseek.dsh\n' : `${stubs.version ?? '0.2.1-rc.3'}\n` };
+    if (command.endsWith('PlistBuddy')) return { status: 0, stdout: args[1].includes('CFBundleIdentifier') ? 'com.deepseek.dsh\n' : `${stubs.version ?? '0.2.1-rc.5'}\n` };
     return { status: 0, stdout: stubs.running ? 'true\n' : 'false\n' };
   };
   const sandbox = { module: mod, exports: mod.exports, require: name => name === 'node:child_process' ? { spawnSync } : name === 'node:os' && stubs.userHome ? { ...os, homedir: () => stubs.userHome } : name === '../vendor/yaml' ? YAML : require(name), __dirname: path.join(ROOT, 'tools'), process: fakeProcess, console: { log() {}, error() {} } };

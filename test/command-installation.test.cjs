@@ -52,7 +52,7 @@ test('command payload does not advertise a native bundle or install scripts', ()
   assert.equal(pkg.dsh.bundle, undefined);
   assert.equal(pkg.scripts, undefined);
   assert.equal(pkg.dsh.client.platform, 'web');
-  assert.equal(pkg.engines.dsh, '0.2.1-rc.3');
+  assert.equal(pkg.engines.dsh, '0.2.1-rc.5');
 });
 test('old script upgrade is one transaction and rollback restores its bytes and state', () => {
   const f = fixture();

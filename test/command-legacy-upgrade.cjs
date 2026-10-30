@@ -26,7 +26,7 @@ function main() {
     next.install({ profile, root });
     assert.equal(next.doctor({ profile, root }).healthy, true);
     assert.equal(JSON.parse(fs.readFileSync(p.history)).length, history + 1);
-    checks.push({ name: 'actual-1.0.2-archive-upgrades-to-current', passed: true });
+    checks.push({ name: `actual-${old.VERSION}-archive-upgrades-to-current`, passed: true });
     const pkg = JSON.parse(fs.readFileSync(p.package)); pkg.dependencies.later = '2.0.0'; fs.writeFileSync(p.package, JSON.stringify(pkg));
     fs.appendFileSync(p.patch, '\n- insert:\n    - id: later\n      name: preserve-later\n');
     next.rollback({ profile });

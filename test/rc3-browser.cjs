@@ -69,7 +69,7 @@ async function main() {
     checks.push({ name: 'real-editor-no-console-errors', passed: true });
     await cdp.js(`window.__SIDE_ACCEPTANCE__.close(${JSON.stringify(mainId)})`);
     await cdp.until(`!window.__SIDE_ACCEPTANCE__.binding(${JSON.stringify(mainId)})`, 'side cleanup');
-    console.log(JSON.stringify({ passed: true, runtime: '0.2.1-rc.3', provider: 'fake', checks }, null, 2));
+    console.log(JSON.stringify({ passed: true, runtime: '0.2.1-rc.5', provider: 'fake', checks }, null, 2));
   });
 }
 if (require.main === module) main().catch(error => { console.error(String(error.message).replace(/\/(?:Users|private|var)\/[^\s\n)]+/g, '<local-path>')); process.exitCode = 1; });

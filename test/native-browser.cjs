@@ -35,7 +35,7 @@ async function main() {
     checks.push({ name: 'native-first-followup-snapshot-readonly-usage', passed: true });
     await cdp.js("Array.from(document.querySelectorAll('[data-side-context] button')).find(b=>b.textContent==='检查更新').click()");
     await cdp.until("document.querySelector('[data-side-update]')?.dataset.sideUpdate==='disabled'", 'native update UI');
-    assert.equal(await cdp.js("document.querySelector('[data-side-update]').innerText.includes('1.1.2')"), true);
+    assert.equal(await cdp.js("document.querySelector('[data-side-update]').innerText.includes('1.1.3')"), true);
     checks.push({ name: 'manual-update-disabled-real-ui', passed: true });
     await cdp.js(`window.__SIDE_ACCEPTANCE__.send(${JSON.stringify(mainId)}, 'NATIVE-LATE-MARKER: 新内容')`);
     await call(`window.__SIDE_ACCEPTANCE__.sideFlag(${JSON.stringify(mainId)}, '--refresh', ${JSON.stringify(sideId)})`);

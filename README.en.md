@@ -2,7 +2,7 @@
 
 [简体中文](README.md) · **English**
 
-[Download for macOS](https://github.com/HHH84h/deepseek-harness-side-chat/releases/download/v1.1.2/deepseek-harness-side-chat-macos-v1.1.2.zip) · [Releases](https://github.com/HHH84h/deepseek-harness-side-chat/releases)
+[Download for macOS](https://github.com/HHH84h/deepseek-harness-side-chat/releases/download/v1.1.3/deepseek-harness-side-chat-macos-v1.1.3.zip) · [Releases](https://github.com/HHH84h/deepseek-harness-side-chat/releases)
 **Keep your main task moving. Ask questions on the side.**
 
 Use `/side` to open an independent, read-only conversation in the right sidebar of DeepSeek Harness. Explain errors, discuss approaches, and read code without interrupting the main task or adding side-chat questions to its model context.
@@ -26,9 +26,9 @@ The demo uses fictional content and a test model. Usage and speed figures are no
 
 ## Installation
 
-**Current release: 1.1.2 · macOS · DeepSeek Harness 0.2.1-rc.3**
+**Current release: 1.1.3 · macOS · DeepSeek Harness 0.2.1-rc.5**
 
-1. Download `deepseek-harness-side-chat-macos-v1.1.2.zip` from this project's [Releases](https://github.com/HHH84h/deepseek-harness-side-chat/releases).
+1. Download `deepseek-harness-side-chat-macos-v1.1.3.zip` from this project's [Releases](https://github.com/HHH84h/deepseek-harness-side-chat/releases).
 2. **Extract the entire folder**, save your work, and fully quit Harness (`⌘Q`).
 3. Double-click **`安装或更新.command`** (Install or Update) and wait for success.
 4. Start Harness again and enter `/side` in the main conversation.
@@ -81,7 +81,14 @@ Failed deletions can be retried through the pending-cleanup action. Side Chat us
 
 ## Compatibility and validation
 
-This release targets **macOS / Harness 0.2.1-rc.3** only. Other Harness versions, Windows, and Linux are unvalidated. A Harness update may require a new compatible release.
+This release targets **macOS / Harness 0.2.1-rc.5** only. Other Harness versions, Windows, and Linux are unvalidated. A Harness update may require a new compatible release.
+
+| Harness version | Side Chat release |
+| --- | --- |
+| 0.2.1-rc.5 | [1.1.3 double-click installer](https://github.com/HHH84h/deepseek-harness-side-chat/releases/tag/v1.1.3) |
+| 0.2.1-rc.3 | Keep using [1.1.2](https://github.com/HHH84h/deepseek-harness-side-chat/releases/tag/v1.1.2) |
+| rc.4, 0.2.2 alpha, or other versions | Not validated in this release; do not bypass version checks |
+
 
 Validation includes **111 unit tests, 17 client tests, and 102 host regression checks**, plus installation, upgrades, failure recovery, rollback, and removal using the extracted ZIP. Real-browser checks cover input, snapshot refresh, statistics, closing, and restart recovery.
 
